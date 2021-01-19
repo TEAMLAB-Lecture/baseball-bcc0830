@@ -2,14 +2,17 @@
 
 import random
 
-
 def get_random_number():
     # Helper Function - 지우지 말 것
     # 100부터 999까지 수를 램덤하게 반환함
     return random.randrange(100, 1000)
 
-
 def is_digit(user_input_number):
+    res = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'}
+    for i in user_input_number:
+        if i not in res:
+            return False
+    return True
     # '''
     # Input:
     #   - user_input_number : 문자열 값
@@ -31,10 +34,8 @@ def is_digit(user_input_number):
     # '''
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
-    result = None
 
     # ==================================
-    return result
 
 
 def is_between_100_and_999(user_input_number):
@@ -58,13 +59,12 @@ def is_between_100_and_999(user_input_number):
     # '''
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
-    result = None
+    return 100 <= int(user_input_number) <= 999
 
     # ==================================
-    return result
-
 
 def is_duplicated_number(three_digit):
+    return len(set(three_digit)) == 3
     # '''
     # Input:
     #   - three_digit : 문자열로 된 세자리 양의 정수 값
@@ -86,11 +86,6 @@ def is_duplicated_number(three_digit):
     # '''
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
-
-    result = None
-    # ==================================
-    return result
-
 
 def is_validated_number(user_input_number):
     # '''
@@ -115,9 +110,8 @@ def is_validated_number(user_input_number):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
-    result = None
     # ==================================
-    return result
+    return is_digit(user_input_number) and is_between_100_and_999(user_input_number) and is_duplicated_number(user_input_number)
 
 
 def get_not_duplicated_three_digit_number():
@@ -141,10 +135,11 @@ def get_not_duplicated_three_digit_number():
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
     # get_random_number() 함수를 사용하여 random number 생성
-
-    result = None
+    while True:
+        res = get_random_number()
+        if len(set(str(res))) == 3:
+            return res
     # ==================================
-    return result
 
 
 def get_strikes_or_ball(user_input_number, random_number):
@@ -174,10 +169,21 @@ def get_strikes_or_ball(user_input_number, random_number):
     # '''
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
+    ans = [0,0]
+    res1 = dict().fromkeys([str(i) for i in range(10)], -1)
+    res2 = dict().fromkeys([str(i) for i in range(10)], -1)
+    for i in range(3):
+        res1[user_input_number[i]] = i
+        res2[random_number[i]] = i
+    for i in res1:
+        if res1[i] == res2[i]:
+            if res1[i] != -1:
+                ans[0] += 1
+        else:
+            if res1[i] != -1 and res2[i] != -1:
+                ans[1] += 1
+    return ans
 
-    result = None
-    # ==================================
-    return result
 
 
 def is_yes(one_more_input):
@@ -207,10 +213,8 @@ def is_yes(one_more_input):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
-    result = None
+    return one_more_input.upper() in ['Y', 'YES']
     # ==================================
-    return result
-
 
 def is_no(one_more_input):
     # '''
@@ -239,9 +243,7 @@ def is_no(one_more_input):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
-    result = None
-    # ==================================
-    return result
+    return one_more_input.upper() in ['N', 'NO']
 
 
 def main():
