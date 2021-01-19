@@ -61,7 +61,7 @@ def main():
     while True:
         user_input = input('Input guess number : ')
         if not is_validated_number(user_input):
-            if user_input == '0':
+            if list(set(user_input)) == ['0']:
                 break
             print('Wrong Input, Input Again')
         else:
