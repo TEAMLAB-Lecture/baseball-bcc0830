@@ -6,7 +6,6 @@ import baseball_game as bg
 from mock import patch
 from io import StringIO
 
-
 class TestBaseballGame(unittest.TestCase):
 
     def test_is_digit(self):
