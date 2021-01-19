@@ -75,6 +75,8 @@ def main():
                 elif is_no(retry):
                     break
                 else:
+                    if list(set(user_input)) == ['0']:
+                        break
                     print('Wrong Input, Input Again')
     print("Thank you for using this program")
     print("End of the Game")
