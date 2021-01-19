@@ -61,10 +61,10 @@ def main():
     while True:
         user_input = input('Input guess number : ')
         if not is_validated_number(user_input):
-            print('Wrong Input, Input Again')
-        else:
             if user_input == '0':
                 break
+            print('Wrong Input, Input Again')
+        else:
             res = get_strikes_or_ball(user_input, random_number)
             print('Strikes : %d , Balls : %d' % (res[0], res[1]))
             if res[0] == 3:
