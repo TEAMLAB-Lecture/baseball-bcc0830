@@ -64,7 +64,7 @@ def is_between_100_and_999(user_input_number):
     # ==================================
 
 def is_duplicated_number(three_digit):
-    return len(set(three_digit)) == 3
+    return not len(set(three_digit)) == 3
     # '''
     # Input:
     #   - three_digit : 문자열로 된 세자리 양의 정수 값
