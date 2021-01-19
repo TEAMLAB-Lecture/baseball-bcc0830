@@ -56,9 +56,10 @@ def is_no(one_more_input):
 def main():
     print("Play Baseball")
     user_input = 999
+    terminate = False
     random_number = str(get_not_duplicated_three_digit_number())
     print("Random Number is : ", random_number)
-    while True:
+    while not terminate:
         user_input = input('Input guess number : ')
         if not is_validated_number(user_input):
             if list(set(user_input)) == ['0']:
@@ -68,16 +69,20 @@ def main():
             res = get_strikes_or_ball(user_input, random_number)
             print('Strikes : %d , Balls : %d' % (res[0], res[1]))
             if res[0] == 3:
-                retry = input('You Win, one more(Y/N)?')
-                if is_yes(retry):
-                    random_number = str(get_not_duplicated_three_digit_number())
-                    print("Random Number is : ", random_number)
-                elif is_no(retry):
-                    break
-                else:
-                    if list(set(retry)) == ['0']:
+                while True:
+                    retry = input('You Win, one more(Y/N)?')
+                    if is_yes(retry):
+                        random_number = str(get_not_duplicated_three_digit_number())
+                        print("Random Number is : ", random_number)
                         break
-                    print('Wrong Input, Input Again')
+                    elif is_no(retry):
+                        terminate = True
+                        break
+                    else:
+                        if list(set(retry)) == ['0']:
+                            terminate = True
+                            break
+                        print('Wrong Input, Input Again')
     print("Thank you for using this program")
     print("End of the Game")
 
